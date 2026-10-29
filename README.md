@@ -9,27 +9,30 @@
 
 ## 入れ方
 
-このリポジトリは、**フォルダそのものが 1 つのスキル**になっています。AI がスキルを読む場所に、そのまま clone するだけで入ります。
+このリポジトリは、**フォルダそのものが 1 つのスキル**になっています。AI がスキルを読む場所に、GitHub から自分のパソコンへ写す（これを「clone」と言います）だけで入ります。
 
-### Claude Code・Cursor
+### Claude Code・Cursor（おすすめのやり方）
 
-どちらも `~/.claude/skills/` の中のスキルを読みます。ターミナルで次の 1 行を打ちます。
+どちらも `~/.claude/skills/` の中のスキルを読みます。AI のチャット欄に次の文を貼ります。
+
+```text
+https://github.com/pon3yamada/shared-grill-me.git を ~/.claude/skills/grill-me に clone してください。
+~/.claude/skills/grill-me がもうある場合は、先に ~/.claude/skills/grill-me.old に名前を変えてから clone してください。
+終わったら、入ったかどうかを確かめて教えてください。
+```
+
+自分で打つときは、**ターミナル**（文字でパソコンに指示するアプリ。Mac は「ターミナル」、Windows は「PowerShell」）を開いて、次を打ちます。
 
 ```bash
 git clone https://github.com/pon3yamada/shared-grill-me.git ~/.claude/skills/grill-me
 ```
 
-ターミナルを使わない人は、AI のチャット欄に次の文を貼っても入ります。
-
-```text
-https://github.com/pon3yamada/shared-grill-me.git を ~/.claude/skills/grill-me に clone してください。
-終わったら、入ったかどうかを確かめて教えてください。
-```
+「git が見つからない」と言われたら、Git（ファイルの変更を記録する道具）がまだ入っていません。AI に「Git を入れたい」と頼んでください。
 
 ### そのほかの AI
 
-- スキルの仕組みがある AI: その AI がスキルを読む場所に clone します。場所が分からなければ、AI に「スキルはどのフォルダに置けば読める？」と聞いてください
-- スキルの仕組みが無い AI: このフォルダの `SKILL.md` を AI に読ませて、「この手順で、〇〇をグリルして」と頼みます
+- **Codex**: 上の文の `~/.claude/skills/grill-me` を `~/.codex/skills/grill-me` に替えて頼みます（置き場は版によって変わることがあります。入らなければ、AI に「スキルはどのフォルダに置けば読める？」と聞いてください）
+- **スキルの仕組みが無い AI**: GitHub でこのリポジトリの `SKILL.md` を開き、右上の「Raw」を押して出た URL を AI に渡し、「これを読んで、この手順で〇〇をグリルして」と頼みます
 
 ## 使い方
 
@@ -55,7 +58,7 @@ AI に「~/.claude/skills/grill-me を pull して」と頼んでもかまいま
 
 | ファイル | 役目 |
 |---|---|
-| `SKILL.md` | スキルの本体（AI が読む手順）。直すのはここだけ |
+| `SKILL.md` | スキルの本体（AI が読む手順）。配布者が直します。自分用に変えたいときは、別の名前のフォルダに写してから変えてください（そのまま変えると、更新を取り込むときにぶつかります） |
 | `AGENTS.md` | このフォルダを開いた AI への案内（どの AI でも読む） |
 | `CLAUDE.md` | Claude Code 用。`AGENTS.md` を読み込むだけ |
 | `README.md` | この説明 |
